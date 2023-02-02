@@ -1,0 +1,5 @@
+>
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+gcc -m32 -MMD -I./include -I../include   -c -o src/irq/do_irq.o src/irq/do_irq.S
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/elf/elf.o src/elf/elf.c
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'

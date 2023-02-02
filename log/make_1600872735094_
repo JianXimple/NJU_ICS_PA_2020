@@ -1,0 +1,25 @@
+>
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+gcc -m32 -MMD -I./include -I../include   -c -o src/irq/do_irq.o src/irq/do_irq.S
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/elf/elf.o src/elf/elf.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/fs/fs.o src/fs/fs.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/syscall/do_syscall.o src/syscall/do_syscall.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/memory/kvm.o src/memory/kvm.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/memory/mm.o src/memory/mm.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/memory/vmem.o src/memory/vmem.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/main.o src/main.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/driver/ide/dma.o src/driver/ide/dma.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/driver/ide/ide.o src/driver/ide/ide.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/driver/ide/disk.o src/driver/ide/disk.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/driver/ide/cache.o src/driver/ide/cache.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/irq/idt.o src/irq/idt.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/irq/i8259.o src/irq/i8259.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/irq/irq_handle.o src/irq/irq_handle.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/lib/misc.o src/lib/misc.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/lib/serial.o src/lib/serial.c
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/lib/printk.o src/lib/printk.c
+gcc -m32 -MMD -I./include -I../include   -c -o start/start.o start/start.S
+ld -Ttext=0x30000 -m elf_i386  -e start -o kernel start/start.o ./src/irq/do_irq.o ./src/elf/elf.o ./src/fs/fs.o ./src/syscall/do_syscall.o ./src/memory/kvm.o ./src/memory/mm.o ./src/memory/vmem.o ./src/main.o ./src/driver/ide/dma.o ./src/driver/ide/ide.o ./src/driver/ide/disk.o ./src/driver/ide/cache.o ./src/irq/idt.o ./src/irq/i8259.o ./src/irq/irq_handle.o ./src/lib/misc.o ./src/lib/serial.o ./src/lib/printk.o src/memory/mm_malloc.o  ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property kernel
+objcopy -S -O binary kernel kernel.img
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'

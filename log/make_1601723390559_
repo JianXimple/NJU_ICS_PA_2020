@@ -1,0 +1,4 @@
+>
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'

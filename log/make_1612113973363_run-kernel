@@ -1,0 +1,144 @@
+> run-kernel
+cd nemu && make
+------make------
+1612113973604
+Mon Feb 1 01:26:13 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+make-[1]: 'nemu' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1612113973631
+Mon Feb 1 01:26:13 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1612113973673
+Mon Feb 1 01:26:13 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/elf/elf.o src/elf/elf.c
+ld -Ttext=0x30000 -m elf_i386  -e start -o kernel start/start.o ./src/irq/do_irq.o ./src/elf/elf.o ./src/fs/fs.o ./src/syscall/do_syscall.o ./src/memory/kvm.o ./src/memory/mm.o ./src/memory/vmem.o ./src/main.o ./src/driver/ide/dma.o ./src/driver/ide/ide.o ./src/driver/ide/disk.o ./src/driver/ide/cache.o ./src/irq/idt.o ./src/irq/i8259.o ./src/irq/irq_handle.o ./src/lib/misc.o ./src/lib/serial.o ./src/lib/printk.o src/memory/mm_malloc.o  ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property kernel
+objcopy -S -O binary kernel kernel.img
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+./nemu/nemu --kernel --testcase add
+NEMU load and execute img: [1m[32m./kernel/kernel.img[0m  elf: [1m[36m./testcase/bin/add[0m
+(nemu) si
+00030000:   e9 84 0a 00 00                            jmp $0xa84
+(nemu) si
+00030a89:   55                                        pushl %ebp
+(nemu) si
+00030a8a:   89 e5                                     movl %esp, %ebp
+(nemu) si
+00030a8c:   e8 a7 f8 ff ff                            call $0xfffff8a7
+(nemu) si
+00030338:   8b 04 24                                  movl (%esp), %eax
+(nemu) si
+0003033b:   c3                                        ret
+(nemu) si
+00030a91:   05 6f c5 00 00                            addl $0xc56f, %eax
+(nemu) si
+00030a96:   8d 80 a7 3a ff ff                         lea1 -0xc559(%eax), %eax
+(nemu) si
+00030a9c:   ff e0                                     jmp %eax
+(nemu) si
+00030aa7:   55                                        pushl %ebp
+(nemu) si
+00030aa8:   89 e5                                     movl %esp, %ebp
+(nemu) si
+00030aaa:   53                                        pushl %ebx
+(nemu) si
+00030aab:   83 ec 14                                  subl $0x14, %esp
+(nemu) si
+00030aae:   e8 e3 f6 ff ff                            call $0xfffff6e3
+(nemu) si
+00030196:   8b 1c 24                                  movl (%esp), %ebx
+(nemu) si
+00030199:   c3                                        ret
+(nemu) si
+00030ab3:   81 c3 4d c5 00 00                         addl $0xc54d, %ebx
+(nemu) si
+00030ab9:   8d 83 80 c5 ff ff                         lea1 -0x3a80(%ebx), %eax
+(nemu) si
+00030abf:   50                                        pushl %eax
+(nemu) si
+00030ac0:   6a 52                                     pushb $0x52
+(nemu) si
+00030ac2:   8d 83 40 c5 ff ff                         lea1 -0x3ac0(%ebx), %eax
+(nemu) si
+00030ac8:   50                                        pushl %eax
+(nemu) si
+00030ac9:   8d 83 4c c5 ff ff                         lea1 -0x3ab4(%ebx), %eax
+(nemu) si
+00030acf:   50                                        pushl %eax
+(nemu) si
+00030ad0:   e8 cf 0e 00 00                            call $0xecf
+(nemu) si
+000319a4:   55                                        pushl %ebp
+(nemu) si
+000319a5:   89 e5                                     movl %esp, %ebp
+(nemu) si
+000319a7:   53                                        pushl %ebx
+(nemu) si' 
+000319a8:   83 ec 14                                  subl $0x14, %esp
+(nemu) si
+000319ab:   e8 e6 e7 ff ff                            call $0xffffe7e6
+(nemu) si
+00030196:   8b 1c 24                                  movl (%esp), %ebx
+(nemu) si
+00030199:   c3                                        ret
+(nemu) si
+000319b0:   81 c3 50 b6 00 00                         addl $0xb650, %ebx
+(nemu) si
+000319b6:   8d 45 0c                                  lea1 0xc(%ebp), %eax
+(nemu) si
+000319b9:   89 45 f4                                  movl %eax, -0xc(%ebp)
+(nemu) si
+000319bc:   8b 45 08                                  movl 0x8(%ebp), %eax
+(nemu) si
+000319bf:   ff 75 f4                                  pushl -0xc(%ebp)
+(nemu) si
+000319c2:   50                                        pushl %eax
+(nemu) si
+000319c3:   68 00 01 00 00                            pushl $0x100
+(nemu) si
+000319c8:   8d 83 a0 1d 01 00                         lea1 0x11da0(%ebx), %eax
+(nemu) si
+000319ce:   50                                        pushl %eax
+(nemu) si
+000319cf:   e8 2c 04 00 00                            call $0x42c
+(nemu) si
+00031e00:   55                                        pushl %ebp
+(nemu) si
+00031e01:   89 e5                                     movl %esp, %ebp
+(nemu) si
+00031e03:   83 ec 28                                  subl $0x28, %esp
+(nemu) si
+00031e06:   e8 35 00 00 00                            call $0x35
+(nemu) si
+00031e40:   55                                        pushl %ebp
+(nemu) si
+00031e41:   a1 40 d0 03 00                            movl 0x3d040, %eax
+(nemu) si
+00031e46:   89 e5                                     movl %esp, %ebp
+(nemu) si
+00031e48:   5d                                        popl %ebp
+(nemu) si 10
+00031e49:   c3                                        ret
+00031e0b:   8b 55 14                                  movl 0x14(%ebp), %edx
+00031e0e:   89 54 24 10                               movl %edx, 0x10(%esp)
+00031e12:   8b 55 10                                  movl 0x10(%ebp), %edx
+00031e15:   89 04 24                                  movl %eax, (%esp)
+00031e18:   89 54 24 0c                               movl %edx, 0xc(%esp)
+00031e1c:   8b 55 0c                                  movl 0xc(%ebp), %edx
+00031e1f:   89 54 24 08                               movl %edx, 0x8(%esp)
+00031e23:   8b 55 08                                  movl 0x8(%ebp), %edx
+00031e26:   89 54 24 04                               movl %edx, 0x4(%esp)
+(nemu) si
+00031e2a:   e8 41 ff ff ff                            call $0xffffff41
+(nemu) si
+00031d70:   55                                        pushl %ebp
+(nemu) c
+[0;31mnemu trap output: [0m[1;35m[src/main.c,82,init_cond] {kernel} Hello, NEMU world![0m

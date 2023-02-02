@@ -1,0 +1,4 @@
+> test_batch-3-3-mute
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall'
+./nemu/nemu --autorun --testcase mov-c --kernel
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall'

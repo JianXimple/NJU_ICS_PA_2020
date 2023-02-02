@@ -1,0 +1,25 @@
+> test_pa-2-1
+cd nemu && make
+------make------
+1608727751080
+Wed Dec 23 20:49:11 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/cpu/instr/push.o src/cpu/instr/push.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/cpu/instr/mov.o src/cpu/instr/mov.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/cpu/decode/opcode.o src/cpu/decode/opcode.c
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1608727751332
+Wed Dec 23 20:49:11 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1608727751376
+Wed Dec 23 20:49:11 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+./nemu/nemu --autorun --testcase mov

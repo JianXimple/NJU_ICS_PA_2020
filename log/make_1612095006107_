@@ -1,0 +1,28 @@
+>
+cd nemu && make
+------make------
+1612095006239
+Sun Jan 31 20:10:06 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/cpu/instr/pop.o src/cpu/instr/pop.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/cpu/decode/opcode.o src/cpu/decode/opcode.c
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1612095006381
+Sun Jan 31 20:10:06 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/string.o src/string.c
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/string src/start.o src/string.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/string
+cp src/string bin/string
+objcopy -S -O binary -B i386 bin/string bin/string.img
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1612095006494
+Sun Jan 31 20:10:06 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'

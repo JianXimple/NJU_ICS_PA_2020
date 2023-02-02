@@ -1,0 +1,9 @@
+>
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/monitor/expr.o src/monitor/expr.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/monitor/breakpoint.o src/monitor/breakpoint.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/monitor/ui.o src/monitor/ui.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/monitor/elf.o src/monitor/elf.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/memory/memory.o src/memory/memory.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/memory/mmu/segment.o src/memory/mmu/segment.c
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'

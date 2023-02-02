@@ -1,0 +1,9 @@
+>
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/string.o src/string.c
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/string src/start.o src/string.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/string
+cp src/string bin/string
+objcopy -S -O binary -B i386 bin/string bin/string.img
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'

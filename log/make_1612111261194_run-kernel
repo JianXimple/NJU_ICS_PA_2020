@@ -1,0 +1,34 @@
+> run-kernel
+cd nemu && make
+------make------
+1612111262076
+Mon Feb 1 00:41:02 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+make-[1]: 'nemu' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1612111262104
+Mon Feb 1 00:41:02 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1612111262145
+Mon Feb 1 00:41:02 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+./nemu/nemu --kernel --testcase add
+NEMU load and execute img: [1m[32m./kernel/kernel.img[0m  elf: [1m[36m./testcase/bin/add[0m
+(nemu) r
+Unknown user command [0;31mr[0m
+(nemu) si
+00030000:   e9 84 0a 00 00                            jmp $0xa84
+(nemu) si
+00030a89:   55                                        pushl %ebp
+(nemu) si
+00030a8a:   89 e5                                     movl %esp, %ebp
+(nemu) c
+[0;31mnemu trap output: [0m[1;35m[src/main.c,82,init_cond] {kernel} Hello, NEMU world![0m

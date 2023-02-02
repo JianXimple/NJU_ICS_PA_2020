@@ -1,0 +1,122 @@
+> test_pa-2-1
+cd nemu && make
+------make------
+1609479336029
+Fri Jan 1 13:35:36 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+make-[1]: 'nemu' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1609479336052
+Fri Jan 1 13:35:36 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/mov-c.o src/mov-c.c
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/mov-c src/start.o src/mov-c.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/mov-c
+cp src/mov-c bin/mov-c
+objcopy -S -O binary -B i386 bin/mov-c bin/mov-c.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/max src/start.o src/max.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/max
+cp src/max bin/max
+objcopy -S -O binary -B i386 bin/max bin/max.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/hello-inline src/start.o src/hello-inline.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/hello-inline
+cp src/hello-inline bin/hello-inline
+objcopy -S -O binary -B i386 bin/hello-inline bin/hello-inline.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/select-sort src/start.o src/select-sort.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/select-sort
+cp src/select-sort bin/select-sort
+objcopy -S -O binary -B i386 bin/select-sort bin/select-sort.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/gotbaha src/start.o src/gotbaha.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/gotbaha
+cp src/gotbaha bin/gotbaha
+objcopy -S -O binary -B i386 bin/gotbaha bin/gotbaha.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/leap-year src/start.o src/leap-year.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/leap-year
+cp src/leap-year bin/leap-year
+objcopy -S -O binary -B i386 bin/leap-year bin/leap-year.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/shuixianhua src/start.o src/shuixianhua.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/shuixianhua
+cp src/shuixianhua bin/shuixianhua
+objcopy -S -O binary -B i386 bin/shuixianhua bin/shuixianhua.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/bit src/start.o src/bit.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/bit
+cp src/bit bin/bit
+objcopy -S -O binary -B i386 bin/bit bin/bit.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/add src/start.o src/add.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/add
+cp src/add bin/add
+objcopy -S -O binary -B i386 bin/add bin/add.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/sum src/start.o src/sum.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/sum
+cp src/sum bin/sum
+objcopy -S -O binary -B i386 bin/sum bin/sum.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/min3 src/start.o src/min3.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/min3
+cp src/min3 bin/min3
+objcopy -S -O binary -B i386 bin/min3 bin/min3.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/sub-longlong src/start.o src/sub-longlong.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/sub-longlong
+cp src/sub-longlong bin/sub-longlong
+objcopy -S -O binary -B i386 bin/sub-longlong bin/sub-longlong.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/struct src/start.o src/struct.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/struct
+cp src/struct bin/struct
+objcopy -S -O binary -B i386 bin/struct bin/struct.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/fib src/start.o src/fib.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/fib
+cp src/fib bin/fib
+objcopy -S -O binary -B i386 bin/fib bin/fib.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/string src/start.o src/string.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/string
+cp src/string bin/string
+objcopy -S -O binary -B i386 bin/string bin/string.img
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/test-float src/start.o src/test-float.o ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property src/test-float
+cp src/test-float bin/test-float
+objcopy -S -O binary -B i386 bin/test-float bin/test-float.img
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1609479336294
+Fri Jan 1 13:35:36 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+./nemu/nemu --autorun --testcase mov
+NEMU load and execute img: [1m[32m./testcase/bin/mov.img[0m  elf: [1m[36m./testcase/bin/mov[0m
+nemu: HIT [0;32mGOOD[0m TRAP at eip = 0x000302b6
+NEMU2 terminated
+./nemu/nemu --autorun --testcase mov-cmp
+NEMU load and execute img: [1m[32m./testcase/bin/mov-cmp.img[0m  elf: [1m[36m./testcase/bin/mov-cmp[0m
+nemu: HIT [0;32mGOOD[0m TRAP at eip = 0x0003037e
+NEMU2 terminated
+./nemu/nemu --autorun --testcase mov-c
+NEMU load and execute img: [1m[32m./testcase/bin/mov-c.img[0m  elf: [1m[36m./testcase/bin/mov-c[0m
+nemu: HIT [0;32mGOOD[0m TRAP at eip = 0x00030103
+NEMU2 terminated
+./nemu/nemu --autorun --testcase mov-jcc
+NEMU load and execute img: [1m[32m./testcase/bin/mov-jcc.img[0m  elf: [1m[36m./testcase/bin/mov-jcc[0m
+invalid opcode(eip = 0x00030092): 7f 06 b8 01 00 00 00 82 ...
+
+There are two cases which will trigger this unexpected exception:
+1. The instruction at eip = 0x00030092 is not implemented.
+2. Something is implemented incorrectly.
+Find this eip value(0x00030092) in the disassembling result to distinguish which case it is.
+
+[1;31mIf it is the first case, see
+ _ ____   ___    __    __  __                         _ 
+(_)___ \ / _ \  / /   |  \/  |                       | |
+ _  __) | (_) |/ /_   | \  / | __ _ _ __  _   _  __ _| |
+| ||__ < > _ <| '_ \  | |\/| |/ _` | '_ \| | | |/ _` | |
+| |___) | (_) | (_) | | |  | | (_| | | | | |_| | (_| | |
+|_|____/ \___/ \___/  |_|  |_|\__,_|_| |_|\__,_|\__,_|_|
+
+for more details.
+
+If it is the second case, remember:
+* The machine is always right!
+* Every line of untested code is always wrong![0m
+

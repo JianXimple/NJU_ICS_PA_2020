@@ -1,0 +1,23 @@
+> submit_pa-3-1
+scripts/submit pa-3-1 202220013
+(1/5) Confirm Submission
+
+Terms to submit:
+	1. I take full responsibility to the code being submitted
+		 * I have protected my own code and have not released it to any unauthorized third-party
+		 * I have properly configured the project with respect to the stage, special attention to:
+			 > include/config.h
+			 > kernel/Makefile
+	2. I have completed my assignment by myself, and have not attempted to hack the tracking or submission processes
+		 * I will cooperate in any further investigation if required
+		 * I am aware that there will be heavy punishments if I cheated
+
+
+Agree the above terms, and confirm to submit [1m[36mPA-3-1[0m for [1m[36m202220013[0m [yes/no]
+	 (default yes, input your choice and press ENTER):(2/5) Check for Integrity ...		[32mPass[0m
+(3/5) Re-Build Project ...		[32mPass[0m
+(4/5) Execute Tests ...			[32mComplete[0m
+(5/5) Pack Project ...			[32mPass[0m
+Submission sequence completed, you may proceed to:
+	1. Submit your report to CSLabCMS if required
+	2. Attend our survey if you would like to

@@ -1,0 +1,40 @@
+> test_pa-1
+cd nemu && make
+------make------
+1601865034195
+Mon Oct 5 10:30:34 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+make-[1]: 'nemu' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1601865034220
+Mon Oct 5 10:30:34 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1601865034259
+Mon Oct 5 10:30:34 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+./nemu/nemu --test-reg
+NEMU execute built-in tests
+reg_test()      [0;32mpass[0m
+./nemu/nemu --test-alu add
+NEMU execute built-in tests
+alu_test_add()  [0;32mpass[0m
+./nemu/nemu --test-alu adc
+NEMU execute built-in tests
+alu_test_adc()  [0;32mpass[0m
+./nemu/nemu --test-alu sub
+NEMU execute built-in tests
+alu_test_sub()  [0;32mpass[0m
+./nemu/nemu --test-alu sbb
+NEMU execute built-in tests
+alu_test_sbb()  [0;32mpass[0m
+./nemu/nemu --test-alu and
+NEMU execute built-in tests
+[0;31mPlease implement me at alu.c[0m

@@ -1,0 +1,76 @@
+> run
+cd nemu && make
+------make------
+1609477650343
+Fri Jan 1 13:07:30 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+make-[1]: 'nemu' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1609477650372
+Fri Jan 1 13:07:30 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/mov-c.o src/mov-c.c
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/mov-c src/start.o src/mov-c.o ../libs/newlib/libc.a
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1609477650467
+Fri Jan 1 13:07:30 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+./nemu/nemu --testcase mov-c
+NEMU load and execute img: [1m[32m./testcase/bin/mov-c.img[0m  elf: [1m[36m./testcase/bin/mov-c[0m
+(nemu) si 20
+00030000:   e9 00 00 00 00                            jmp $0x0
+00030005:   55                                        pushl %ebp
+00030006:   89 e5                                     movl %esp, %ebp
+00030008:   e8 fe 00 00 00                            call $0xfe
+0003010b:   8b 14 24                                  movl (%esp), %edx
+0003010e:   c3                                        ret
+0003000d:   81 c2 f3 2f 00 00                         addl $0x2ff3, %edx
+00030013:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+00030019:   c7 00 00 00 00 00                         movl $0x0, (%eax)
+0003001f:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+00030025:   c7 40 04 01 00 00 00                      movl $0x1, 0x4(%eax)
+0003002c:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+00030032:   c7 40 08 02 00 00 00                      movl $0x2, 0x8(%eax)
+00030039:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+0003003f:   c7 40 0c 03 00 00 00                      movl $0x3, 0xc(%eax)
+00030046:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+0003004c:   c7 40 10 04 00 00 00                      movl $0x4, 0x10(%eax)
+00030053:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+00030059:   8b 48 0c                                  movl 0xc(%eax), %ecx
+0003005c:   c7 c0 20 30 03 00                         movl $0x33020, %eax
+(nemu) si
+00030062:   89 08                                     movl %ecx, (%eax)
+(nemu) si
+00030064:   c7 c0 20 30 03 00                         movl $0x33020, %eax
+(nemu) si
+0003006a:   8b 08                                     movl (%eax), %ecx
+(nemu) si
+0003006c:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si
+00030072:   89 48 14                                  movl %ecx, 0x14(%eax)
+(nemu) si
+00030075:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si
+0003007b:   8b 00                                     movl (%eax), %eax
+(nemu) si
+0003007d:   85 c0                                     testl %eax, %eax
+(nemu) nfor    infor    r
+eax	0x00000000
+ecx	0x00000003
+edx	0x00033000
+ebx	0x00000000
+esp	0x07ffffec
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x0003007f
+(nemu) quir    quit
+Unknown user command [0;31mquit[0m
+(nemu) q

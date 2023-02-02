@@ -1,0 +1,174 @@
+> run
+cd nemu && make
+------make------
+1609478063485
+Fri Jan 1 13:14:23 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/cpu/decode/opcode.o src/cpu/decode/opcode.c
+gcc -o nemu src/monitor/expr.o src/monitor/breakpoint.o src/monitor/ui.o src/monitor/elf.o src/memory/memory.o src/memory/mmu/segment.o src/memory/mmu/page.o src/memory/mmu/cache.o src/memory/mmu/tlb.o src/main.o src/device/sdl.o src/device/dev/serial.o src/device/dev/vga.o src/device/dev/timer.o src/device/dev/vga-palette.o src/device/dev/ide.o src/device/dev/audio.o src/device/dev/audio-web.o src/device/dev/keyboard.o src/device/i8259_pic.o src/device/io/mm_io.o src/device/io/port_io.o src/parse_args.o src/cpu/test/alu_test.o src/cpu/test/fpu_test.o src/cpu/instr/neg.o src/cpu/instr/stos.o src/cpu/instr/sbb.o src/cpu/instr/jcc.o src/cpu/instr/in.o src/cpu/instr/cmp.o src/cpu/instr/int_.o src/cpu/instr/shr.o src/cpu/instr/inv.o src/cpu/instr/x87.o src/cpu/instr/bt.o src/cpu/instr/group.o src/cpu/instr/test.o src/cpu/instr/rep_repe.o src/cpu/instr/not.o src/cpu/instr/call.o src/cpu/instr/imul.o src/cpu/instr/mul.o src/cpu/instr/out.o src/cpu/instr/sub.o src/cpu/instr/sti.o src/cpu/instr/adc.o src/cpu/instr/lidt.o src/cpu/instr/pop.o src/cpu/instr/or.o src/cpu/instr/opcode_2_byte.o src/cpu/instr/lgdt.o src/cpu/instr/hlt.o src/cpu/instr/movs.o src/cpu/instr/flags.o src/cpu/instr/nemu_trap.o src/cpu/instr/nop.o src/cpu/instr/lea.o src/cpu/instr/data_size.o src/cpu/instr/ret.o src/cpu/instr/sar.o src/cpu/instr/push.o src/cpu/instr/dec.o src/cpu/instr/mov.o src/cpu/instr/xor.o src/cpu/instr/div.o src/cpu/instr/add.o src/cpu/instr/cli.o src/cpu/instr/cbw.o src/cpu/instr/iret.o src/cpu/instr/setcc.o src/cpu/instr/cmps.o src/cpu/instr/inc.o src/cpu/instr/jmp.o src/cpu/instr/shl.o src/cpu/instr/leave.o src/cpu/instr/cltd.o src/cpu/instr/and.o src/cpu/instr/idiv.o src/cpu/instr/cmov.o src/cpu/cpu.o src/cpu/fpu.o src/cpu/reg.o src/cpu/alu.o src/cpu/intr.o src/cpu/decode/sib.o src/cpu/decode/opcode.o src/cpu/decode/modrm.o src/cpu/decode/operand.o src/cpu/decode/debug.o src/cpu/decode/opcode_ref.o ../libs/nemu-ref/lib-nemu-ref.a -lreadline -lSDL
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1609478063773
+Fri Jan 1 13:14:23 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/mov-c.o src/mov-c.c
+ld -m elf_i386 -e start -Ttext=0x30000 -o src/mov-c src/start.o src/mov-c.o ../libs/newlib/libc.a
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1609478063874
+Fri Jan 1 13:14:23 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+./nemu/nemu --testcase mov-c
+NEMU load and execute img: [1m[32m./testcase/bin/mov-c.img[0m  elf: [1m[36m./testcase/bin/mov-c[0m
+(nemu) si
+00030000:   e9 00 00 00 00                            jmp $0x0
+(nemu) si
+00030005:   55                                        pushl %ebp
+(nemu) si
+00030006:   89 e5                                     movl %esp, %ebp
+(nemu) infor    r
+eax	0x00000000
+ecx	0x00000000
+edx	0x00000000
+ebx	0x00000000
+esp	0x07ffffec
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x00030008
+(nemu) si
+00030008:   e8 fe 00 00 00                            call $0xfe
+(nemu) si\\\     in  siinfo r
+eax	0x00000000
+ecx	0x00000000
+edx	0x00000000
+ebx	0x00000000
+esp	0x07ffffe8
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x0003010b
+(nemu) info r[4Psi
+0003010b:   8b 14 24                                  movl (%esp), %edx
+(nemu) siinfo r
+eax	0x00000000
+ecx	0x00000000
+edx	0x0003000d
+ebx	0x00000000
+esp	0x07ffffe8
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x0003010e
+(nemu) info r[4Psi
+0003010e:   c3                                        ret
+(nemu) siinfo r
+eax	0x00000000
+ecx	0x00000000
+edx	0x0003000d
+ebx	0x00000000
+esp	0x07ffffec
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x0003000d
+(nemu) si
+0003000d:   81 c2 f3 2f 00 00                         addl $0x2ff3, %edx
+(nemu) siinfo r
+eax	0x00000000
+ecx	0x00000000
+edx	0x00033000
+ebx	0x00000000
+esp	0x07ffffec
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x00030013
+(nemu) si
+00030013:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) siinfo r
+eax	0x00033040
+ecx	0x00000000
+edx	0x00033000
+ebx	0x00000000
+esp	0x07ffffec
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x00030019
+(nemu) si
+00030019:   c7 00 00 00 00 00                         movl $0x0, (%eax)
+(nemu) info r
+eax	0x00033040
+ecx	0x00000000
+edx	0x00033000
+ebx	0x00000000
+esp	0x07ffffec
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x0003001f
+(nemu) info r[4Psi
+0003001f:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si[Ksiinfo r
+eax	0x00033040
+ecx	0x00000000
+edx	0x00033000
+ebx	0x00000000
+esp	0x07ffffec
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x00030025
+(nemu) info r[4Psi
+00030025:   c7 40 04 01 00 00 00                      movl $0x1, 0x4(%eax)
+(nemu) si
+0003002c:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si
+00030032:   c7 40 08 02 00 00 00                      movl $0x2, 0x8(%eax)
+(nemu) si
+00030039:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si
+0003003f:   c7 40 0c 03 00 00 00                      movl $0x3, 0xc(%eax)
+(nemu) si
+00030046:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si
+0003004c:   c7 40 10 04 00 00 00                      movl $0x4, 0x10(%eax)
+(nemu) si
+00030053:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si
+00030059:   8b 48 0c                                  movl 0xc(%eax), %ecx
+(nemu) info r
+eax	0x00033040
+ecx	0x00000003
+edx	0x00033000
+ebx	0x00000000
+esp	0x07ffffec
+ebp	0x07ffffec
+esi	0x00000000
+edi	0x00000000
+eip	0x0003005c
+(nemu) si
+0003005c:   c7 c0 20 30 03 00                         movl $0x33020, %eax
+(nemu) si
+00030062:   89 08                                     movl %ecx, (%eax)
+(nemu) si
+00030064:   c7 c0 20 30 03 00                         movl $0x33020, %eax
+(nemu) si
+0003006a:   8b 08                                     movl (%eax), %ecx
+(nemu) si
+0003006c:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si
+00030072:   89 48 14                                  movl %ecx, 0x14(%eax)
+(nemu) si
+00030075:   c7 c0 40 30 03 00                         movl $0x33040, %eax
+(nemu) si
+0003007b:   8b 00                                     movl (%eax), %eax
+(nemu) si
+0003007d:   85 c0                                     testl %eax, %eax
+(nemu) q

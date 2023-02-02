@@ -1,0 +1,7 @@
+>
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+gcc -m32 -MMD -Wall -Werror -march=i386 -fno-builtin -fno-omit-frame-pointer -fno-stack-protector -I./include -I../include -I../libs/newlib/include   -c -o src/elf/elf.o src/elf/elf.c
+ld -Ttext=0x30000 -m elf_i386  -e start -o kernel start/start.o ./src/irq/do_irq.o ./src/elf/elf.o ./src/fs/fs.o ./src/syscall/do_syscall.o ./src/memory/kvm.o ./src/memory/mm.o ./src/memory/vmem.o ./src/main.o ./src/driver/ide/dma.o ./src/driver/ide/ide.o ./src/driver/ide/disk.o ./src/driver/ide/cache.o ./src/irq/idt.o ./src/irq/i8259.o ./src/irq/irq_handle.o ./src/lib/misc.o ./src/lib/serial.o ./src/lib/printk.o src/memory/mm_malloc.o  ../libs/newlib/libc.a
+objcopy --remove-section .note.gnu.property kernel
+objcopy -S -O binary kernel kernel.img
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'

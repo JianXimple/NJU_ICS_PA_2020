@@ -1,0 +1,29 @@
+> test_pa-3-2
+cd nemu && make
+------make------
+1612579150926
+Sat Feb 6 10:39:10 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/memory/mmu/segment.o src/memory/mmu/segment.c
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1612579150968
+Sat Feb 6 10:39:10 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1612579151008
+Sat Feb 6 10:39:11 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+make test_batch-2-2-mute
+------make------
+1612579151071
+Sat Feb 6 10:39:11 CST 2021
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall'
+./nemu/nemu --autorun --testcase mov --kernel
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall'

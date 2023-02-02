@@ -1,0 +1,54 @@
+> test_pa-2-1
+cd nemu && make
+------make------
+1609161364618
+Mon Dec 28 21:16:04 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/nemu'
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/cpu/instr/ret.o src/cpu/instr/ret.c
+gcc -ggdb3 -MMD -MP -Wall -Werror -O2 -I./include -I../include -I../libs -I../libs/nemu-ref/include   -c -o src/cpu/instr/add.o src/cpu/instr/add.c
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/nemu'
+cd testcase && make
+------make------
+1609161364732
+Mon Dec 28 21:16:04 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/testcase'
+gcc -ggdb3 -MMD -MP -Wall -m32 -march=i386 -fno-builtin -fno-stack-protector -I../include -I../libs/newlib/include -c -o src/start.o start.S	
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/testcase'
+cd kernel && make
+------make------
+1609161364798
+Mon Dec 28 21:16:04 CST 2020
+make-[1]: Entering directory '/home/pa202220013/pa2020_fall/kernel'
+make-[1]: 'kernel' is up to date.
+make-[1]: Leaving directory '/home/pa202220013/pa2020_fall/kernel'
+./nemu/nemu --autorun --testcase mov
+NEMU load and execute img: [1m[32m./testcase/bin/mov.img[0m  elf: [1m[36m./testcase/bin/mov[0m
+nemu: HIT [0;32mGOOD[0m TRAP at eip = 0x000302b6
+NEMU2 terminated
+./nemu/nemu --autorun --testcase mov-cmp
+NEMU load and execute img: [1m[32m./testcase/bin/mov-cmp.img[0m  elf: [1m[36m./testcase/bin/mov-cmp[0m
+nemu: HIT [0;32mGOOD[0m TRAP at eip = 0x0003037e
+NEMU2 terminated
+./nemu/nemu --autorun --testcase mov-c
+NEMU load and execute img: [1m[32m./testcase/bin/mov-c.img[0m  elf: [1m[36m./testcase/bin/mov-c[0m
+invalid opcode(eip = 0x0003000d): 81 c2 f3 2f 00 00 c7 c0 ...
+
+There are two cases which will trigger this unexpected exception:
+1. The instruction at eip = 0x0003000d is not implemented.
+2. Something is implemented incorrectly.
+Find this eip value(0x0003000d) in the disassembling result to distinguish which case it is.
+
+[1;31mIf it is the first case, see
+ _ ____   ___    __    __  __                         _ 
+(_)___ \ / _ \  / /   |  \/  |                       | |
+ _  __) | (_) |/ /_   | \  / | __ _ _ __  _   _  __ _| |
+| ||__ < > _ <| '_ \  | |\/| |/ _` | '_ \| | | |/ _` | |
+| |___) | (_) | (_) | | |  | | (_| | | | | |_| | (_| | |
+|_|____/ \___/ \___/  |_|  |_|\__,_|_| |_|\__,_|\__,_|_|
+
+for more details.
+
+If it is the second case, remember:
+* The machine is always right!
+* Every line of untested code is always wrong![0m
+
